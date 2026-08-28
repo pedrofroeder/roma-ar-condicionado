@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import InstagramGlyph from "@/components/icons/InstagramGlyph";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 type InstagramMediaTileProps = {
   type: "image" | "video";
@@ -14,11 +15,15 @@ type InstagramMediaTileProps = {
 export default function InstagramMediaTile({ type, src, alt, href }: InstagramMediaTileProps) {
   const containerRef = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isMobile = useIsMobile();
   const [inView, setInView] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  // Mobile browsers are unreliable about picking up a video's `src` once it's
+  // swapped in after mount, so on mobile the video loads its real source
+  // up front instead of waiting on the lazy in-view swap used on desktop.
   useEffect(() => {
-    if (type !== "video" || !containerRef.current) return;
+    if (type !== "video" || !containerRef.current || isMobile) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setInView(entry.isIntersecting);
@@ -28,9 +33,10 @@ export default function InstagramMediaTile({ type, src, alt, href }: InstagramMe
     );
     observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [type]);
+  }, [type, isMobile]);
 
   useEffect(() => {
+    if (isMobile) return;
     const video = videoRef.current;
     if (!video) return;
     video.muted = true;
@@ -39,7 +45,7 @@ export default function InstagramMediaTile({ type, src, alt, href }: InstagramMe
     } else {
       video.pause();
     }
-  }, [inView, hasLoaded]);
+  }, [inView, hasLoaded, isMobile]);
 
   return (
     <a
@@ -52,11 +58,11 @@ export default function InstagramMediaTile({ type, src, alt, href }: InstagramMe
       {type === "video" ? (
         <video
           ref={videoRef}
-          src={hasLoaded ? src : undefined}
+          src={isMobile || hasLoaded ? src : undefined}
           muted
           loop
           playsInline
-          preload="none"
+          preload={isMobile ? "metadata" : "none"}
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
         />

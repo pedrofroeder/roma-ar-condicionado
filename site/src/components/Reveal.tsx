@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 type RevealProps = {
   children: ReactNode;
@@ -13,7 +14,10 @@ type RevealProps = {
 };
 
 export default function Reveal({ children, className, delay = 0, y = 20, immediate = false }: RevealProps) {
-  const trigger = immediate
+  const isMobile = useIsMobile();
+  const skipScrollAnimation = immediate || isMobile;
+
+  const trigger = skipScrollAnimation
     ? { animate: { opacity: 1, y: 0 } }
     : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-80px" } };
 
