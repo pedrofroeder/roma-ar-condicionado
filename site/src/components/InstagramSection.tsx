@@ -1,82 +1,118 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import InstagramGlyph from "@/components/icons/InstagramGlyph";
+import InstagramMediaTile from "@/components/InstagramMediaTile";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import { company } from "@/config/company";
 
-const feedPhotos = [
-  { src: "/images/work/instalacao-residencial-01.jpg", alt: "Instalação residencial de ar-condicionado pela Roma" },
-  { src: "/images/work/instalacao-midea-01.jpg", alt: "Instalação de unidade externa Midea" },
-  { src: "/images/work/depois-01.jpg", alt: "Ar-condicionado instalado com acabamento limpo" },
-  { src: "/images/work/acabamento-premium-01.jpg", alt: "Unidade interna com acabamento premium" },
-  { src: "/images/about/rooftop-multiplas-unidades-01.jpg", alt: "Diversas unidades externas instaladas em cobertura" },
-  { src: "/images/work/instalacao-parede-azul-01.jpg", alt: "Instalação de ar-condicionado em parede azul" },
+const spotlightMedia: {
+  type: "image" | "video";
+  src: string;
+  alt: string;
+}[] = [
+  {
+    type: "video",
+    src: "/videos/reel-01.mp4",
+    alt: "Vídeo de instalação de ar-condicionado pela Roma",
+  },
+  {
+    type: "image",
+    src: "/images/work/tecnico-selfie-01.jpg",
+    alt: "Técnico da Roma nos bastidores de um atendimento",
+  },
+  {
+    type: "video",
+    src: "/videos/reel-02.mp4",
+    alt: "Vídeo dos bastidores de um atendimento da Roma",
+  },
+  {
+    type: "image",
+    src: "/images/work/gas-recarga-01.jpg",
+    alt: "Cilindro de gás refrigerante usado em serviço da Roma",
+  },
+  {
+    type: "video",
+    src: "/videos/reel-03.mp4",
+    alt: "Vídeo de manutenção de ar-condicionado pela Roma",
+  },
+  {
+    type: "image",
+    src: "/images/work/instalacao-suporte-01.jpg",
+    alt: "Técnico da Roma preparando suporte para instalação de ar-condicionado",
+  },
 ];
 
 export default function InstagramSection() {
   return (
     <section id="instagram" className="bg-navy-950 py-20 sm:py-28">
       <div className="container-page">
-        <div className="flex flex-col items-center justify-between gap-8 sm:flex-row sm:items-end">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Instagram"
-              title="Acompanhe nossos trabalhos"
-              align="left"
-              light
-              description="Mais fotos e vídeos de instalações, manutenções e bastidores no dia a dia da Roma."
-            />
-          </Reveal>
+        <Reveal>
+          <SectionHeading
+            eyebrow="Instagram"
+            title="Bastidores da Roma no Instagram"
+            light
+            description="Fotos e vídeos das instalações, manutenções e do dia a dia da equipe em campo."
+          />
+        </Reveal>
 
-          <Reveal delay={0.1}>
-            <a
-              href={company.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="focus-ring inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-accent-400/50 hover:bg-white/10"
-            >
-              <InstagramGlyph className="h-4 w-4" aria-hidden="true" />
-              {company.instagramHandle}
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </Reveal>
-        </div>
+        <Reveal delay={0.08}>
+          <div className="relative mt-12 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.015] p-5 shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset] sm:p-7 lg:grid lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-10 lg:p-9">
+            <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-accent-500/15 blur-[100px]" />
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
-          {feedPhotos.map((photo, index) => (
-            <Reveal key={photo.src} delay={index * 0.05}>
+            <div className="relative">
+              <div className="flex items-center gap-4">
+                <div className="rounded-full bg-gradient-to-tr from-amber-400 via-fuchsia-500 to-accent-500 p-[3px]">
+                  <div className="rounded-full bg-navy-950 p-[3px]">
+                    <Image
+                      src="/images/logo/roma-mascot.png"
+                      alt=""
+                      aria-hidden="true"
+                      width={112}
+                      height={112}
+                      className="h-14 w-14 rounded-full object-cover object-top"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p className="font-bold text-white">{company.instagramHandle}</p>
+                  <p className="text-sm text-white/55">{company.addressLine}</p>
+                </div>
+              </div>
+
+              <p className="mt-5 leading-relaxed text-white/70">
+                Acompanhe instalações, manutenções e os bastidores da equipe
+                da Roma no dia a dia dos atendimentos.
+              </p>
+
               <a
                 href={company.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="focus-ring group relative block aspect-square overflow-hidden rounded-xl sm:rounded-2xl"
+                className="focus-ring group mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-tr from-amber-400 via-fuchsia-500 to-accent-500 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(217,70,239,0.55)] transition-transform duration-200 hover:scale-[1.03]"
               >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                <InstagramGlyph className="h-4 w-4" aria-hidden="true" />
+                Seguir no Instagram
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-navy-950/0 transition-colors duration-300 group-hover:bg-navy-950/40">
-                  <InstagramGlyph className="h-6 w-6 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
-                </div>
               </a>
-            </Reveal>
-          ))}
-        </div>
+            </div>
 
-        <Reveal delay={0.15} className="mt-10 flex justify-center">
-          <a
-            href={company.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-navy-900 shadow-soft transition-all hover:bg-accent-400 hover:text-white hover:shadow-soft-lg"
-          >
-            <InstagramGlyph className="h-4 w-4" aria-hidden="true" />
-            Ver perfil no Instagram
-          </a>
+            <div className="relative mt-8 grid grid-cols-3 gap-2.5 sm:gap-3 lg:mt-0">
+              {spotlightMedia.map((media) => (
+                <InstagramMediaTile
+                  key={media.src}
+                  type={media.type}
+                  src={media.src}
+                  alt={media.alt}
+                  href={company.instagramUrl}
+                />
+              ))}
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

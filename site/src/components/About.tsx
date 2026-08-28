@@ -69,8 +69,8 @@ export default function About() {
           <div className="relative mx-auto max-w-md">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-soft-lg">
               <Image
-                src="/images/about/instalacao-decorada-01.jpg"
-                alt="Ar-condicionado instalado com acabamento cuidadoso em ambiente residencial"
+                src="/images/about/manutencao-detalhe-01.jpg"
+                alt="Técnico da Roma realizando manutenção detalhada em unidade de ar-condicionado"
                 fill
                 sizes="(max-width: 1024px) 80vw, 420px"
                 className="object-cover"
@@ -84,17 +84,6 @@ export default function About() {
                 width={220}
                 height={280}
                 className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
-
-            <div className="absolute -top-6 -right-4 h-24 w-24 overflow-hidden rounded-2xl bg-navy-900 shadow-soft-lg sm:h-28 sm:w-28">
-              <Image
-                src="/images/logo/roma-mascot.png"
-                alt=""
-                aria-hidden="true"
-                width={200}
-                height={200}
-                className="h-full w-full scale-125 object-cover object-top"
               />
             </div>
           </div>

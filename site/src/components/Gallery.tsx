@@ -15,19 +15,14 @@ type GalleryPhoto = {
 
 const photos: GalleryPhoto[] = [
   {
-    src: "/images/work/depois-01.jpg",
-    alt: "Ar-condicionado instalado e finalizado após o serviço da Roma",
-    label: "Instalação finalizada",
-  },
-  {
-    src: "/images/work/instalacao-residencial-01.jpg",
-    alt: "Técnico da Roma instalando unidade externa de ar-condicionado em residência",
+    src: "/images/work/instalacao-parede-azul-01.jpg",
+    alt: "Técnico da Roma instalando unidade externa em parede azul",
     label: "Instalação residencial",
   },
   {
-    src: "/images/work/instalacao-midea-01.jpg",
-    alt: "Unidade externa Midea instalada em parede",
-    label: "Instalação de split",
+    src: "/images/work/instalacao-samsung-interna-01.jpg",
+    alt: "Unidade interna Samsung instalada em canto de ambiente",
+    label: "Unidade interna Samsung",
   },
   {
     src: "/images/work/acabamento-premium-01.jpg",
@@ -35,24 +30,29 @@ const photos: GalleryPhoto[] = [
     label: "Acabamento premium",
   },
   {
-    src: "/images/work/infraestrutura-obra-01.jpg",
-    alt: "Infraestrutura de tubulação preparada em obra para instalação",
-    label: "Infraestrutura de obra",
+    src: "/images/work/instalacao-lg-telhado-01.jpg",
+    alt: "Unidade externa LG instalada sob telhado de telha cerâmica",
+    label: "Instalação sob telhado",
+  },
+  {
+    src: "/images/work/servico-eletrico-01.jpg",
+    alt: "Técnico da Roma realizando serviço elétrico em quadro externo",
+    label: "Serviços elétricos",
   },
   {
     src: "/images/work/instalacao-beiral-01.jpg",
     alt: "Técnico da Roma instalando unidade externa sob beiral de telhado",
-    label: "Instalação sob telhado",
+    label: "Instalação externa",
   },
   {
-    src: "/images/work/instalacao-parede-azul-01.jpg",
-    alt: "Técnico da Roma instalando unidade externa em parede azul",
-    label: "Instalação residencial",
+    src: "/images/work/instalacao-lg-parede-vermelha-01.jpg",
+    alt: "Unidade externa LG instalada em ambiente com parede de azulejo vermelho",
+    label: "Instalação de split",
   },
   {
-    src: "/images/work/antes-01.jpg",
-    alt: "Ambiente antes da instalação do ar-condicionado",
-    label: "Antes da instalação",
+    src: "/images/work/instalacao-midea-parede-01.jpg",
+    alt: "Unidade externa Midea instalada em parede",
+    label: "Instalação Midea",
   },
 ];
 
